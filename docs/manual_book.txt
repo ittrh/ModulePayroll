@@ -1,0 +1,19 @@
+Menggunakan Command Line (Terminal)
+Cara ini akan menghasilkan file .py permanen yang bisa kamu impor ke proyek kamu. 
+Pastikan kamu sudah menginstal pustaka yang sesuai (PyQt5, PyQt6, atau PySide6).
+
+Gunakan perintah berikut di terminal/command prompt:
+
+Untuk PyQt6:
+pyuic6 -x nama_file.ui -o nama_file.py
+
+Untuk PyQt5:
+pyuic5 -x nama_file.ui -o nama_file.py
+
+Untuk PySide6:
+pyside6-uic nama_file.ui -o nama_file.py
+jika ada asset yang digunakan lakukan juga
+pyside6-rcc nama_file.qrc -o nama_file.py
+
+Catatan: Argumen -x berfungsi agar file .py yang dihasilkan memiliki kode tambahan 
+sehingga bisa langsung dijalankan (running) untuk testing.
