@@ -335,14 +335,11 @@ ssh-keygen -t ed25519 -C "email-github-anda@example.com"
 cd nama-repositori
 
 ```
-
-
 2. **Cek URL Remote:**
 ```bash
 git remote -v
 
 ```
-
 
 Pastikan alamat `origin` sudah mengarah ke repositori tujuan (SSH atau HTTPS yang tepat).
 3. **Cek Branch Utama:**
@@ -350,7 +347,6 @@ Pastikan alamat `origin` sudah mengarah ke repositori tujuan (SSH atau HTTPS yan
 git status
 
 ```
-
 
 Ketahui nama branch utama (`main` atau `master`) dan disarankan membuat branch baru sebelum mulai mengubah kode:
 ```bash
