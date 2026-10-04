@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QWidget
 from src.ui.payroll.Payroll import Ui_Payroll
 
-from src.ui.payroll.tabs.PayrollTabSalaryController import PayrollTabSalaryController
+from src.ui.payroll.tab_salary.PayrollTabSalaryController import PayrollTabSalaryController
 
 class PayrollController(QWidget):
     def __init__(self):
