@@ -16,7 +16,6 @@ class Compositions(Base):
     __tablename__ = "compositions"
 
     id = Column(String(10), primary_key=True)
-    code = Column(String(10))
     name = Column(String(25), nullable=False)
 
     employee = relationship("Employee", back_populates="compositions")

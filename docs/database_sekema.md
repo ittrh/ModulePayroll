@@ -9,7 +9,7 @@ Berikut adalah gambaran grafis struktur tabel (ERD / Entity Relationship Diagram
   |       site        |          |    positions      |          |   compositions    |
   +-------------------+          +-------------------+          +-------------------+
   | PK  id (String10) |          | PK  id (String10) |          | PK  id (String10) |
-  |     name          |          |     name          |          |     code          |
+  |     name          |          |     name          |          |                   |
   +---------+---------+          +---------+---------+          |     name          |
             |                              |                    +---------+---------+
             | 1                            | 1                            | 1
@@ -88,10 +88,10 @@ Berikut adalah gambaran grafis struktur tabel (ERD / Entity Relationship Diagram
 
 ##### **`compositions`**
 
-| id (PK) | code | name |
+| id (PK) | name |
 | --- | --- | --- |
-| `C001` | SKR | Sekretariat Data |
-| `C002` | OPR | Operasional |
+| `TK/0` | Tidak Kawin, 0 Tanggungan |
+| `TK/1` | Tidak Kawin, 1 Tanggungan |
 
 ##### **`salary_components`**
 
