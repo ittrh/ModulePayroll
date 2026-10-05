@@ -1,6 +1,6 @@
 import uuid
 from datetime import datetime
-from sqlalchemy import Column, String, Float, Integer, DECIMAL, DATETIME, ForeignKey, DATE
+from sqlalchemy import Column, String, Float, Integer, DECIMAL, DATETIME, ForeignKey, DATE, JSON
 from sqlalchemy.orm import relationship
 from src.db.SqlilteDb import Base
 from src.fun.GenerateBulanTahun import generate_bulan_tahun
@@ -65,6 +65,7 @@ class PayrollHeader(Base):
     total_deduction = Column(DECIMAL(15, 2), default=0.00)
     thp = Column(DECIMAL(15, 2), default=0.00)
     created_at = Column(DATETIME, default=datetime.now)
+    context = Column(JSON)
 
     payroll_detail = relationship(
         "PayrollDetails", back_populates="payroll_header"
