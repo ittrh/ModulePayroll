@@ -17,9 +17,8 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
-    QMainWindow, QMenu, QMenuBar, QPushButton,
-    QSizePolicy, QSpacerItem, QStackedWidget, QStatusBar,
-    QVBoxLayout, QWidget)
+    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
+    QStackedWidget, QStatusBar, QVBoxLayout, QWidget)
 import src.ui.PayrollResource
 
 class Ui_MainWindow(object):
@@ -46,6 +45,14 @@ class Ui_MainWindow(object):
         self.actionBenefits.setObjectName(u"actionBenefits")
         self.actionIncome_Tax = QAction(MainWindow)
         self.actionIncome_Tax.setObjectName(u"actionIncome_Tax")
+        self.actionSetting = QAction(MainWindow)
+        self.actionSetting.setObjectName(u"actionSetting")
+        self.actionSite = QAction(MainWindow)
+        self.actionSite.setObjectName(u"actionSite")
+        self.actionPosition = QAction(MainWindow)
+        self.actionPosition.setObjectName(u"actionPosition")
+        self.actionReports = QAction(MainWindow)
+        self.actionReports.setObjectName(u"actionReports")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.horizontalLayout_2 = QHBoxLayout(self.centralwidget)
@@ -53,7 +60,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.setContentsMargins(4, 2, 4, 0)
         self.sideBar = QWidget(self.centralwidget)
         self.sideBar.setObjectName(u"sideBar")
-        self.sideBar.setMaximumSize(QSize(134, 16777215))
+        self.sideBar.setMaximumSize(QSize(140, 16777215))
         self.sideBar.setStyleSheet(u"QPushButton{\n"
 "	font-weight:bold;\n"
 "	text-align:left;\n"
@@ -102,28 +109,48 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.pushSideDashboard)
 
-        self.pushSidePayroll = QPushButton(self.sideBar)
-        self.pushSidePayroll.setObjectName(u"pushSidePayroll")
-        self.pushSidePayroll.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        self.pushSideMasters = QPushButton(self.sideBar)
+        self.pushSideMasters.setObjectName(u"pushSideMasters")
+        self.pushSideMasters.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         icon2 = QIcon()
-        icon2.addFile(u":/icons-dark/images/Appstract-master/icons/appstract-dark/picpay.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.pushSidePayroll.setIcon(icon2)
-        self.pushSidePayroll.setIconSize(QSize(20, 20))
+        icon2.addFile(u":/icons-dark/images/Appstract-master/icons/appstract-dark/walmart.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.pushSideMasters.setIcon(icon2)
+        self.pushSideMasters.setIconSize(QSize(20, 20))
 
-        self.verticalLayout_2.addWidget(self.pushSidePayroll)
+        self.verticalLayout_2.addWidget(self.pushSideMasters)
+
+        self.pushSideTransactions = QPushButton(self.sideBar)
+        self.pushSideTransactions.setObjectName(u"pushSideTransactions")
+        self.pushSideTransactions.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        icon3 = QIcon()
+        icon3.addFile(u":/icons-dark/images/Appstract-master/icons/appstract-dark/picpay.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.pushSideTransactions.setIcon(icon3)
+        self.pushSideTransactions.setIconSize(QSize(20, 20))
+
+        self.verticalLayout_2.addWidget(self.pushSideTransactions)
+
+        self.pushSideReports = QPushButton(self.sideBar)
+        self.pushSideReports.setObjectName(u"pushSideReports")
+        self.pushSideReports.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        icon4 = QIcon()
+        icon4.addFile(u":/icons-dark/images/Appstract-master/icons/appstract-dark/google_files.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.pushSideReports.setIcon(icon4)
+        self.pushSideReports.setIconSize(QSize(20, 20))
+
+        self.verticalLayout_2.addWidget(self.pushSideReports)
 
         self.verticalSpacer = QSpacerItem(20, 476, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_2.addItem(self.verticalSpacer)
 
-        self.pushSideLogout = QPushButton(self.sideBar)
-        self.pushSideLogout.setObjectName(u"pushSideLogout")
-        icon3 = QIcon()
-        icon3.addFile(u":/icons-dark/images/Appstract-master/icons/appstract-dark/aptoide.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.pushSideLogout.setIcon(icon3)
-        self.pushSideLogout.setIconSize(QSize(20, 20))
+        self.pushSideAbout = QPushButton(self.sideBar)
+        self.pushSideAbout.setObjectName(u"pushSideAbout")
+        icon5 = QIcon()
+        icon5.addFile(u":/icons-dark/images/Appstract-master/icons/appstract-dark/xfinity_my_account.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.pushSideAbout.setIcon(icon5)
+        self.pushSideAbout.setIconSize(QSize(20, 20))
 
-        self.verticalLayout_2.addWidget(self.pushSideLogout)
+        self.verticalLayout_2.addWidget(self.pushSideAbout)
 
 
         self.horizontalLayout_2.addWidget(self.sideBar)
@@ -163,34 +190,9 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addWidget(self.widget_2)
 
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QMenuBar(MainWindow)
-        self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1046, 33))
-        self.menuFile = QMenu(self.menubar)
-        self.menuFile.setObjectName(u"menuFile")
-        self.menuSettings = QMenu(self.menubar)
-        self.menuSettings.setObjectName(u"menuSettings")
-        self.menuHelp = QMenu(self.menubar)
-        self.menuHelp.setObjectName(u"menuHelp")
-        self.menuReports = QMenu(self.menubar)
-        self.menuReports.setObjectName(u"menuReports")
-        MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
-        self.menubar.addAction(self.menuFile.menuAction())
-        self.menubar.addAction(self.menuSettings.menuAction())
-        self.menubar.addAction(self.menuReports.menuAction())
-        self.menubar.addAction(self.menuHelp.menuAction())
-        self.menuFile.addAction(self.actionExit)
-        self.menuSettings.addAction(self.actionMasters)
-        self.menuSettings.addSeparator()
-        self.menuSettings.addAction(self.actionBasic_Salary)
-        self.menuSettings.addAction(self.actionDeduction)
-        self.menuSettings.addAction(self.actionBenefits)
-        self.menuSettings.addAction(self.actionIncome_Tax)
-        self.menuHelp.addAction(self.actionDonate)
 
         self.retranslateUi(MainWindow)
 
@@ -201,21 +203,23 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Payroll - Module", None))
         self.actionMasters.setText(QCoreApplication.translate("MainWindow", u"Employee", None))
         self.actionExit.setText(QCoreApplication.translate("MainWindow", u"Exit", None))
-        self.actionDonate.setText(QCoreApplication.translate("MainWindow", u"Donate", None))
+        self.actionDonate.setText(QCoreApplication.translate("MainWindow", u"About Me", None))
         self.actionAbout_Me.setText(QCoreApplication.translate("MainWindow", u"About Me", None))
         self.actionBasic_Salary.setText(QCoreApplication.translate("MainWindow", u"Salary", None))
         self.actionDeduction.setText(QCoreApplication.translate("MainWindow", u"Deductions", None))
-        self.actionBenefits.setText(QCoreApplication.translate("MainWindow", u"Benefits", None))
+        self.actionBenefits.setText(QCoreApplication.translate("MainWindow", u"Income", None))
         self.actionIncome_Tax.setText(QCoreApplication.translate("MainWindow", u"Tax", None))
+        self.actionSetting.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
+        self.actionSite.setText(QCoreApplication.translate("MainWindow", u"Site", None))
+        self.actionPosition.setText(QCoreApplication.translate("MainWindow", u"Position", None))
+        self.actionReports.setText(QCoreApplication.translate("MainWindow", u"Reports", None))
         self.label.setText("")
         self.pushSideDashboard.setText(QCoreApplication.translate("MainWindow", u"Dashboard", None))
-        self.pushSidePayroll.setText(QCoreApplication.translate("MainWindow", u"Payroll", None))
-        self.pushSideLogout.setText(QCoreApplication.translate("MainWindow", u"Logout", None))
-        self.labelTittle.setText(QCoreApplication.translate("MainWindow", u"Modul Payroll PT. Tanjung Redeb Hutani", None))
+        self.pushSideMasters.setText(QCoreApplication.translate("MainWindow", u"Master", None))
+        self.pushSideTransactions.setText(QCoreApplication.translate("MainWindow", u"Transaction", None))
+        self.pushSideReports.setText(QCoreApplication.translate("MainWindow", u"Report", None))
+        self.pushSideAbout.setText(QCoreApplication.translate("MainWindow", u"About", None))
+        self.labelTittle.setText(QCoreApplication.translate("MainWindow", u"Payroll Management Module - PT. Tanjung Redeb Hutani", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Created by IT PT. Tanjung Redeb Hutani - Code by Restu Ardananto \u00a9 2026", None))
-        self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
-        self.menuSettings.setTitle(QCoreApplication.translate("MainWindow", u"Settings", None))
-        self.menuHelp.setTitle(QCoreApplication.translate("MainWindow", u"Help", None))
-        self.menuReports.setTitle(QCoreApplication.translate("MainWindow", u"Reports", None))
     # retranslateUi
 

@@ -1,8 +1,4 @@
-Berikut adalah gambaran grafis diagram ERD, contoh isi sampel data, serta penjelasan relasi antartabel berdasarkan struktur terbaru dari model `masters.py` dan `transactions.py` Anda.
-
----
-
-### 1. Visualisasi Diagram Relasi Tabel (ERD)
+### Grafis Diagram Relasi Tabel (ERD)
 
 ```text
        +-------------------+               +-------------------+
@@ -66,36 +62,42 @@ Berikut adalah gambaran grafis diagram ERD, contoh isi sampel data, serta penjel
                               |     type            |                      |     start/end_date|
                               |     formula         |                      |     is_closed     |
                               |     description     |                      +-------------------+
+                              | FK  rules_id        |
+                              +----------+----------+
+                                         | N
+                                         |
+                                         | 1 (Opsional / Dynamic Lookup)
+                              +----------v----------+
+                              |        rules        |
                               +---------------------+
-
-   [ TABEL MASTER ATURAN / REGULASI (STANDALONE / LOOKUP SERVICE) ]
-   +------------------------+  +---------------------------+  +-------------------+
-   |  bpjs_kesehatan_rules  |  | bpjs_tenaga_kerja_rules   |  |   tax_tar_rules   |
-   +------------------------+  +---------------------------+  +-------------------+
-   | PK id (VARCHAR20)      |  | PK id (VARCHAR20)         |  | PK id (VARCHAR20) |
-   |    batas_max_upah      |  |    batas_max_upah         |  |    kategori       |
-   |    batas_min_upah      |  |    jkk (DECIMAL 5,4)      |  |    bruto_min      |
-   |    ditanggung_pemberi  |  |    jkm (DECIMAL 5,4)      |  |    bruto_max      |
-   |    ditanggung_pekerja  |  |    jht_pemberi / pekerja  |  |    tarif (DECIMAL)|
-   +------------------------+  |    jp_pemberi / pekerja   |  |    composition_acc|
-                               +---------------------------+  +-------------------+
+                              | PK  id (String25)   |
+                              |     name            |
+                              |     config (JSON)   |
+                              +---------------------+
 
 ```
 
 ---
 
-### 2. Gambaran Tabel & Contoh Isinya
+### Contoh Tabel beserta Isinya
 
-#### **A. Tabel Master (`masters.py`)**
+#### **A. Tabel Master (`master.py`)**
 
-##### **`site`**
+##### **`rules`** *(Satu Tabel Master untuk Semua Regulasi)*
+
+| id (PK) | name | config (JSON) |
+| --- | --- | --- |
+| `R_BPJS_KES` | BPJS Kesehatan | `{"batas_max": 12000000, "batas_min": 3383928, "pemberi_kerja": 0.04, "pekerja": 0.01}` |
+| `R_BPJS_TK` | BPJS Ketenagakerjaan | `{"batas_max": 10042300, "jkk": 0.0024, "jkm": 0.0030, "jht_pemberi": 0.037, "jht_pekerja": 0.02}` |
+| `R_TAX_TER` | PPh 21 TER | `{"category": "A", "min": 0, "max": 5400000, "rate": 0.0, "min": 5400001, "max": 5650000, "rate": 0.0025}` |
+| `R_MEAL` | Rules Uang Makan | `{"rate_per_day": 50000, "extra_overtime_rate": 20000}` |
+
+##### **`site`** & **`positions`**
 
 | id (PK) | name |
 | --- | --- |
 | `S001` | HQ Gunung Tabur |
 | `S002` | Camp Semurut |
-
-##### **`positions`**
 
 | id (PK) | name |
 | --- | --- |
@@ -111,74 +113,57 @@ Berikut adalah gambaran grafis diagram ERD, contoh isi sampel data, serta penjel
 
 ##### **`salary_components`**
 
-| id (PK) | name | type | formula | description |
-| --- | --- | --- | --- | --- |
-| `FI001` | Gaji Pokok | `INCOME` | `None` | Gaji pokok bulanan |
-| `VI001` | Lembur 1.5x | `INCOME` | `(gaji_pokok / 173) * 1.5` | Uang lembur jam pertama |
-| `FD001` | BPJS Kes | `DEDUCTION` | `CALC_BPJS_KES` | Potongan BPJS Kesehatan 1% |
-| `FD002` | PPh 21 TER | `DEDUCTION` | `CALC_TER` | Potongan Pajak PPh21 TER |
-
-##### **`bpjs_kesehatan_rules`** *(Desimal 5,4 untuk Persentase)*
-
-| id (PK) | batas_max_upah | batas_min_upah | ditanggung_pemberi_kerja | ditanggung_tenaga_kerja |
-| --- | --- | --- | --- | --- |
-| `KES2026` | 12000000.00 | 3383928.00 | `0.0400` *(4%)* | `0.0100` *(1%)* |
-
-##### **`bpjs_tenaga_kerja_rules`** *(Desimal 5,4 untuk Persentase)*
-
-| id (PK) | batas_max_upah | jaminan_kecelakaan_kerja | jaminan_kematian | jht_ditanggung_pemberi_kerja | jht_ditanggung_tenaga_kerja | jp_ditanggung_pemberi_kerja | jp_ditanggung_tenaga_kerja |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| `TK2026` | 10042300.00 | `0.0024` *(0.24%)* | `0.0030` *(0.30%)* | `0.0370` *(3.7%)* | `0.0200` *(2.0%)* | `0.0200` *(2.0%)* | `0.0100` *(1.0%)* |
-
-##### **`tax_tar_rules`** *(Lengkap dengan JSON `composition_accept`)*
-
-| id (PK) | kategori | bruto_min | bruto_max | tarif | composition_accept (JSON) |
+| id (PK) | name | type | formula | rules_id (FK) | description |
 | --- | --- | --- | --- | --- | --- |
-| `TER_A_01` | `A` | 0.00 | 5400000.00 | `0.0000` *(0%)* | `["SKR", "OPR", "DIR"]` |
-| `TER_A_02` | `A` | 5400001.00 | 5650000.00 | `0.0025` *(0.25%)* | `["SKR", "OPR"]` |
+| `FI001` | Gaji Pokok | `INCOME` | `None` | `None` | Gaji pokok bulanan |
+| `VI001` | Lembur | `INCOME` | `(gaji_pokok / 173) * jam` | `None` | Lembur harian/jam |
+| `FD001` | BPJS Kes | `DEDUCTION` | `CALC_BPJS_KES` | `R_BPJS_KES` | Potongan BPJS Kesehatan |
+| `FD002` | PPh 21 TER | `DEDUCTION` | `CALC_TAX_TER` | `R_TAX_TER` | Potongan PPh21 TER |
 
 ---
 
-#### **B. Tabel Transaksi (`transactions.py`)**
+#### **B. Tabel Transaksi (`transaction.py`)**
 
-##### **`default_employee_salary_component`** *(Gaji Standar per Karyawan)*
+##### **`default_employee_salary_component`**
 
 | id (PK) | employee_id (FK) | component_id (FK) | amount |
 | --- | --- | --- | --- |
 | `def-001` | `emp-uuid-001` | `FI001` | 5000000.00 |
 
-##### **`payroll_period`** *(Periode Penggajian)*
+##### **`payroll_period`**
 
 | id (PK) | period_name | start_date | end_date | is_closed |
 | --- | --- | --- | --- | --- |
 | `prd-oct-2026` | Oktober 2026 | 2026-10-01 | 2026-10-31 | 0 |
 
-##### **`payroll_header`** *(Slip Gaji Header)*
+##### **`payroll_header`**
 
 | id (PK) | period_id (FK) | employee_id (FK) | total_income | total_deduction | thp | created_at | context (JSON) |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `pay-hdr-001` | `prd-oct-2026` | `emp-uuid-001` | 5500000.00 | 200000.00 | 5300000.00 | 2026-10-05 15:08:00 | `{"ter_category": "A", "marital_status": "K/0", "tax_rate": 0.0025}` |
+| `pay-hdr-001` | `prd-oct-2026` | `emp-uuid-001` | 5500000.00 | 162500.00 | 5337500.00 | 2026-10-06 09:00:00 | `{"Gaji Pokok": 5000000, "Lembur Jam": 10, "Tarif Pajak": 0.0025, "TER_Category": "A"}` |
 
-##### **`payroll_details`** *(Rincian Komponen Slip Gaji)*
+##### **`payroll_details`**
 
 | id (PK) | payroll_header_id (FK) | component_id (FK) | amount | remarks |
 | --- | --- | --- | --- | --- |
 | `dtl-001` | `pay-hdr-001` | `FI001` | 5000000.00 | Gaji Pokok Oktober |
-| `dtl-002` | `pay-hdr-001` | `VI001` | 500000.00 | Lembur 10 jam |
-| `dtl-003` | `pay-hdr-001` | `FD001` | 50000.00 | BPJS Kesehatan (1%) |
-| `dtl-004` | `pay-hdr-001` | `FD002` | 150000.00 | PPh21 TER (0.25%) |
+| `dtl-002` | `pay-hdr-001` | `VI001` | 500000.00 | Uang Lembur (10 Jam) |
+| `dtl-003` | `pay-hdr-001` | `FD001` | 50000.00 | Potongan BPJS Kes (1%) |
+| `dtl-004` | `pay-hdr-001` | `FD002` | 112500.00 | PPh21 TER (0.25%) |
 
 ---
 
-### 3. Penjelasan Relasi & Perubahan Penting
+### Penjelasan Relasi Antartabel
 
-1. **Struktur `DECIMAL(5, 4)` pada Rules Regulasi:**
-* Penggunaan tipe data `DECIMAL(5, 4)` sangat tepat untuk menyimpan rate persentase akurat (misal: `0.0025` untuk `0.25%`, `0.0400` untuk `4%`) sehingga menghindari rounding error saat pemrosesan gaji di Python.
-
-
-2. **Kesesuaian `composition_accept` (JSON) pada `TaxTarRules`:**
-* Fitur kolom `JSON` ini memungkinkan pencocokan kategori TER PPh 21 tidak hanya berdasarkan penghasilan bruto, tetapi juga memvalidasi apakah kode komposisi karyawan (`Employee.composition`) berhak atau cocok dengan aturan tarif pajak tersebut.
+1. **Master Karyawan:**
+* `Site` & `Positions` ke `Employee` (`1 : N`). Karyawan terikat pada 1 site dan 1 jabatan.
 
 
-3. **Penyimpanan Snapshot via `PayrollHeader.context` (JSON):**
-* Saat transaksi diproses, detail historis (seperti status PTKP, rate pajak yang digunakan, atau parameter kalkulasi) disimpan ke dalam kolom `context` berbentuk JSON. Hal ini membuat data historis slip gaji tetap aman dan dapat diverifikasi kapan pun meskipun aturan regulasi berubah di kemudian hari.
+2. **Master Komponen & Rules:**
+* `Rules` ke `SalaryComponents` (`1 : N`). Komponen gaji (seperti BPJS atau PPh21) dapat mengacu pada aturan tertentu yang disimpan di dalam tabel `Rules`.
+
+
+3. **Standar Gaji & Transaksi:**
+* `Employee` & `SalaryComponents` dihubungkan oleh `DefaultEmployeeSalaryComponent` untuk menentukan nominal default tiap karyawan.
+* `PayrollPeriod` & `Employee` menjadi rujukan utama untuk `PayrollHeader` (`1 : N`).
+* `PayrollHeader` memiliki banyak rincian di `PayrollDetails` (`1 : N`), di mana setiap baris rincian merujuk pada `SalaryComponents`.

@@ -35,7 +35,7 @@
      <widget class="QWidget" name="sideBar" native="true">
       <property name="maximumSize">
        <size>
-        <width>134</width>
+        <width>140</width>
         <height>16777215</height>
        </size>
       </property>
@@ -138,16 +138,56 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushSidePayroll">
+        <widget class="QPushButton" name="pushSideMasters">
          <property name="layoutDirection">
           <enum>Qt::LayoutDirection::LeftToRight</enum>
          </property>
          <property name="text">
-          <string>Payroll</string>
+          <string>Master</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../PayrollResource.qrc">
+           <normaloff>:/icons-dark/images/Appstract-master/icons/appstract-dark/walmart.png</normaloff>:/icons-dark/images/Appstract-master/icons/appstract-dark/walmart.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushSideTransactions">
+         <property name="layoutDirection">
+          <enum>Qt::LayoutDirection::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>Transaction</string>
          </property>
          <property name="icon">
           <iconset resource="../PayrollResource.qrc">
            <normaloff>:/icons-dark/images/Appstract-master/icons/appstract-dark/picpay.png</normaloff>:/icons-dark/images/Appstract-master/icons/appstract-dark/picpay.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushSideReports">
+         <property name="layoutDirection">
+          <enum>Qt::LayoutDirection::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>Report</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../PayrollResource.qrc">
+           <normaloff>:/icons-dark/images/Appstract-master/icons/appstract-dark/google_files.png</normaloff>:/icons-dark/images/Appstract-master/icons/appstract-dark/google_files.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -171,13 +211,13 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="pushSideLogout">
+        <widget class="QPushButton" name="pushSideAbout">
          <property name="text">
-          <string>Logout</string>
+          <string>About</string>
          </property>
          <property name="icon">
           <iconset resource="../PayrollResource.qrc">
-           <normaloff>:/icons-dark/images/Appstract-master/icons/appstract-dark/aptoide.png</normaloff>:/icons-dark/images/Appstract-master/icons/appstract-dark/aptoide.png</iconset>
+           <normaloff>:/icons-dark/images/Appstract-master/icons/appstract-dark/xfinity_my_account.png</normaloff>:/icons-dark/images/Appstract-master/icons/appstract-dark/xfinity_my_account.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -202,7 +242,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Dashboard - Modul Payroll PT. Tanjung Redeb Hutani</string>
+          <string>Payroll Management Module - PT. Tanjung Redeb Hutani</string>
          </property>
         </widget>
        </item>
@@ -233,47 +273,6 @@
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1046</width>
-     <height>33</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="actionExit"/>
-   </widget>
-   <widget class="QMenu" name="menuSettings">
-    <property name="title">
-     <string>Settings</string>
-    </property>
-    <addaction name="actionMasters"/>
-    <addaction name="separator"/>
-    <addaction name="actionBenefits"/>
-    <addaction name="actionDeduction"/>
-    <addaction name="actionIncome_Tax"/>
-   </widget>
-   <widget class="QMenu" name="menuHelp">
-    <property name="title">
-     <string>Help</string>
-    </property>
-    <addaction name="actionDonate"/>
-   </widget>
-   <widget class="QMenu" name="menuReports">
-    <property name="title">
-     <string>Reports</string>
-    </property>
-   </widget>
-   <addaction name="menuFile"/>
-   <addaction name="menuSettings"/>
-   <addaction name="menuReports"/>
-   <addaction name="menuHelp"/>
-  </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionMasters">
    <property name="text">
@@ -287,7 +286,7 @@
   </action>
   <action name="actionDonate">
    <property name="text">
-    <string>Donate</string>
+    <string>About Me</string>
    </property>
   </action>
   <action name="actionAbout_Me">
@@ -313,6 +312,26 @@
   <action name="actionIncome_Tax">
    <property name="text">
     <string>Tax</string>
+   </property>
+  </action>
+  <action name="actionSetting">
+   <property name="text">
+    <string>Settings</string>
+   </property>
+  </action>
+  <action name="actionSite">
+   <property name="text">
+    <string>Site</string>
+   </property>
+  </action>
+  <action name="actionPosition">
+   <property name="text">
+    <string>Position</string>
+   </property>
+  </action>
+  <action name="actionReports">
+   <property name="text">
+    <string>Reports</string>
    </property>
   </action>
  </widget>
