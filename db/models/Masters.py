@@ -11,13 +11,13 @@ class Site(Base):
 
     employee = relationship("Employee", back_populates="site")
 
-class Positions(Base):
-    __tablename__ = "positions"
+class Designations(Base):
+    __tablename__ = "designations"
 
     id = Column(String(10), primary_key=True)
     name = Column(String(25), nullable=False)
 
-    employee = relationship("Employee", back_populates="positions")
+    employee = relationship("Employee", back_populates="designation")
 
 class Employee(Base):
     __tablename__ = "employee"
@@ -40,8 +40,8 @@ class Employee(Base):
     site_id = Column(String(10), ForeignKey("site.id"))
     site = relationship("Site", back_populates="employee")
 
-    position_id = Column(String(10), ForeignKey("positions.id"))
-    positions = relationship("Positions", back_populates="employee")
+    designation_id = Column(String(10), ForeignKey("designations.id"))
+    designation = relationship("Designations", back_populates="employee")
     
     composition = Column(String(5), nullable=False)
     bpjs_tk_active = Column(Integer, default=1)
@@ -78,7 +78,7 @@ class Rules(Base):
     
     id = Column(String(25), primary_key=True, nullable=False)
     name = Column(String(50), nullable=False)
-    config = Column(JSON, nullable=False)
+    config = Column(JSON)
     
     salary_component = relationship("SalaryComponents", back_populates="rule")
     

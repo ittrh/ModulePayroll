@@ -40,38 +40,6 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLabel" name="label_2">
-       <property name="minimumSize">
-        <size>
-         <width>20</width>
-         <height>20</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>20</width>
-         <height>20</height>
-        </size>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="pixmap">
-        <pixmap resource="../PayrollResource.qrc">:/icons-dark/images/Appstract-master/icons/appstract-dark/blackberry_device_search.png</pixmap>
-       </property>
-       <property name="scaledContents">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="editCari">
-       <property name="placeholderText">
-        <string>Cari ...</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="pushAddRules">
        <property name="font">
         <font>
@@ -79,7 +47,7 @@
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">text-align:left;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>Add Rules</string>
@@ -125,10 +93,10 @@
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">border:none;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
-        <string>Hapus</string>
+        <string>Delete</string>
        </property>
       </widget>
      </item>
@@ -146,7 +114,7 @@
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">text-align:left;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>Edit</string>

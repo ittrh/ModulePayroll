@@ -1,6 +1,6 @@
 from db.models.Masters import (
     Site,
-    Positions,
+    Designations,
     Employee,
     SalaryComponents,
     Rules
@@ -15,7 +15,7 @@ from db.models.Transaction import (
 
 __all__ = [
     "Site",
-    "Positions",
+    "Designations",
     "Employee",
     "SalaryComponents",
     "Rules",

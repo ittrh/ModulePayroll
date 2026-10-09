@@ -8,6 +8,7 @@ QApplication.setHighDpiScaleFactorRoundingPolicy(
 from src.ui.MainWindowController import MainWindowController
 def main():
     app = QApplication(sys.argv)
+    app.setStyle("Fusion")
     main_window = MainWindowController()
     main_window.show()
     sys.exit(app.exec())

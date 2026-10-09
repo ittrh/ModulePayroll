@@ -17,16 +17,25 @@
    <iconset resource="../PayrollResource.qrc">
     <normaloff>:/ico/images/logo.ico</normaloff>:/ico/images/logo.ico</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <property name="spacing">
+     <number>0</number>
+    </property>
     <property name="leftMargin">
-     <number>4</number>
+     <number>0</number>
     </property>
     <property name="topMargin">
-     <number>2</number>
+     <number>0</number>
     </property>
     <property name="rightMargin">
-     <number>4</number>
+     <number>0</number>
     </property>
     <property name="bottomMargin">
      <number>0</number>
@@ -35,15 +44,12 @@
      <widget class="QWidget" name="sideBar" native="true">
       <property name="maximumSize">
        <size>
-        <width>140</width>
+        <width>160</width>
         <height>16777215</height>
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton{
-	font-weight:bold;
-	text-align:left;
-}</string>
+       <string notr="true"/>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <property name="spacing">
@@ -231,7 +237,10 @@
      </widget>
     </item>
     <item>
-     <widget class="QWidget" name="widget_2" native="true">
+     <widget class="QWidget" name="mainWidget" native="true">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
         <widget class="QLabel" name="labelTittle">
@@ -240,6 +249,9 @@
            <pointsize>12</pointsize>
            <bold>true</bold>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>Payroll Management Module - PT. Tanjung Redeb Hutani</string>
@@ -258,22 +270,11 @@
          <widget class="QWidget" name="page_2"/>
         </widget>
        </item>
-       <item>
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>Created by IT PT. Tanjung Redeb Hutani - Code by Restu Ardananto © 2026</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
       </layout>
      </widget>
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <action name="actionMasters">
    <property name="text">
     <string>Employee</string>

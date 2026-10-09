@@ -18,7 +18,7 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
     QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
-    QStackedWidget, QStatusBar, QVBoxLayout, QWidget)
+    QStackedWidget, QVBoxLayout, QWidget)
 import src.ui.PayrollResource
 
 class Ui_MainWindow(object):
@@ -29,6 +29,7 @@ class Ui_MainWindow(object):
         icon = QIcon()
         icon.addFile(u":/ico/images/logo.ico", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         MainWindow.setWindowIcon(icon)
+        MainWindow.setStyleSheet(u"")
         self.actionMasters = QAction(MainWindow)
         self.actionMasters.setObjectName(u"actionMasters")
         self.actionExit = QAction(MainWindow)
@@ -55,16 +56,15 @@ class Ui_MainWindow(object):
         self.actionReports.setObjectName(u"actionReports")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
+        self.centralwidget.setStyleSheet(u"")
         self.horizontalLayout_2 = QHBoxLayout(self.centralwidget)
+        self.horizontalLayout_2.setSpacing(0)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.horizontalLayout_2.setContentsMargins(4, 2, 4, 0)
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.sideBar = QWidget(self.centralwidget)
         self.sideBar.setObjectName(u"sideBar")
-        self.sideBar.setMaximumSize(QSize(140, 16777215))
-        self.sideBar.setStyleSheet(u"QPushButton{\n"
-"	font-weight:bold;\n"
-"	text-align:left;\n"
-"}")
+        self.sideBar.setMaximumSize(QSize(160, 16777215))
+        self.sideBar.setStyleSheet(u"")
         self.verticalLayout_2 = QVBoxLayout(self.sideBar)
         self.verticalLayout_2.setSpacing(4)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
@@ -155,20 +155,22 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2.addWidget(self.sideBar)
 
-        self.widget_2 = QWidget(self.centralwidget)
-        self.widget_2.setObjectName(u"widget_2")
-        self.verticalLayout_3 = QVBoxLayout(self.widget_2)
+        self.mainWidget = QWidget(self.centralwidget)
+        self.mainWidget.setObjectName(u"mainWidget")
+        self.mainWidget.setStyleSheet(u"")
+        self.verticalLayout_3 = QVBoxLayout(self.mainWidget)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.labelTittle = QLabel(self.widget_2)
+        self.labelTittle = QLabel(self.mainWidget)
         self.labelTittle.setObjectName(u"labelTittle")
         font = QFont()
         font.setPointSize(12)
         font.setBold(True)
         self.labelTittle.setFont(font)
+        self.labelTittle.setStyleSheet(u"")
 
         self.verticalLayout_3.addWidget(self.labelTittle)
 
-        self.stackedWidget = QStackedWidget(self.widget_2)
+        self.stackedWidget = QStackedWidget(self.mainWidget)
         self.stackedWidget.setObjectName(u"stackedWidget")
         self.stackedWidget.setMinimumSize(QSize(870, 550))
         self.page = QWidget()
@@ -180,19 +182,10 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.stackedWidget)
 
-        self.label_3 = QLabel(self.widget_2)
-        self.label_3.setObjectName(u"label_3")
-        self.label_3.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
 
-        self.verticalLayout_3.addWidget(self.label_3)
-
-
-        self.horizontalLayout_2.addWidget(self.widget_2)
+        self.horizontalLayout_2.addWidget(self.mainWidget)
 
         MainWindow.setCentralWidget(self.centralwidget)
-        self.statusbar = QStatusBar(MainWindow)
-        self.statusbar.setObjectName(u"statusbar")
-        MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
 
@@ -220,6 +213,5 @@ class Ui_MainWindow(object):
         self.pushSideReports.setText(QCoreApplication.translate("MainWindow", u"Report", None))
         self.pushSideAbout.setText(QCoreApplication.translate("MainWindow", u"About", None))
         self.labelTittle.setText(QCoreApplication.translate("MainWindow", u"Payroll Management Module - PT. Tanjung Redeb Hutani", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Created by IT PT. Tanjung Redeb Hutani - Code by Restu Ardananto \u00a9 2026", None))
     # retranslateUi
 

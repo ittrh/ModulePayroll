@@ -16,8 +16,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QHBoxLayout, QHeaderView,
-    QLabel, QLineEdit, QPushButton, QSizePolicy,
-    QSpacerItem, QTableView, QVBoxLayout, QWidget)
+    QLabel, QPushButton, QSizePolicy, QSpacerItem,
+    QTableView, QVBoxLayout, QWidget)
 import src.ui.PayrollResource
 
 class Ui_Rules(object):
@@ -43,26 +43,12 @@ class Ui_Rules(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
 
-        self.label_2 = QLabel(Rules)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setMinimumSize(QSize(20, 20))
-        self.label_2.setMaximumSize(QSize(20, 20))
-        self.label_2.setPixmap(QPixmap(u":/icons-dark/images/Appstract-master/icons/appstract-dark/blackberry_device_search.png"))
-        self.label_2.setScaledContents(True)
-
-        self.horizontalLayout.addWidget(self.label_2)
-
-        self.editCari = QLineEdit(Rules)
-        self.editCari.setObjectName(u"editCari")
-
-        self.horizontalLayout.addWidget(self.editCari)
-
         self.pushAddRules = QPushButton(Rules)
         self.pushAddRules.setObjectName(u"pushAddRules")
         font = QFont()
         font.setBold(True)
         self.pushAddRules.setFont(font)
-        self.pushAddRules.setStyleSheet(u"text-align:left;")
+        self.pushAddRules.setStyleSheet(u"")
         icon = QIcon()
         icon.addFile(u":/icons-dark/images/Appstract-master/icons/appstract-dark/game_space.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.pushAddRules.setIcon(icon)
@@ -87,7 +73,7 @@ class Ui_Rules(object):
         self.pushHapusBatal = QPushButton(Rules)
         self.pushHapusBatal.setObjectName(u"pushHapusBatal")
         self.pushHapusBatal.setMaximumSize(QSize(95, 30))
-        self.pushHapusBatal.setStyleSheet(u"border:none;")
+        self.pushHapusBatal.setStyleSheet(u"")
 
         self.horizontalLayout_2.addWidget(self.pushHapusBatal)
 
@@ -95,7 +81,7 @@ class Ui_Rules(object):
         self.pushEditSimpan.setObjectName(u"pushEditSimpan")
         self.pushEditSimpan.setMaximumSize(QSize(95, 30))
         self.pushEditSimpan.setFont(font)
-        self.pushEditSimpan.setStyleSheet(u"text-align:left;")
+        self.pushEditSimpan.setStyleSheet(u"")
         self.pushEditSimpan.setIcon(icon)
         self.pushEditSimpan.setIconSize(QSize(20, 20))
 
@@ -113,10 +99,8 @@ class Ui_Rules(object):
     def retranslateUi(self, Rules):
         Rules.setWindowTitle(QCoreApplication.translate("Rules", u"Form", None))
         self.label.setText(QCoreApplication.translate("Rules", u"Rules :", None))
-        self.label_2.setText("")
-        self.editCari.setPlaceholderText(QCoreApplication.translate("Rules", u"Cari ...", None))
         self.pushAddRules.setText(QCoreApplication.translate("Rules", u"Add Rules", None))
-        self.pushHapusBatal.setText(QCoreApplication.translate("Rules", u"Hapus", None))
+        self.pushHapusBatal.setText(QCoreApplication.translate("Rules", u"Delete", None))
         self.pushEditSimpan.setText(QCoreApplication.translate("Rules", u"Edit", None))
     # retranslateUi
 

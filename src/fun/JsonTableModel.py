@@ -1,9 +1,9 @@
 from PySide6.QtCore import Qt, QAbstractTableModel, QModelIndex
 import json
 
-class RulesTableModel(QAbstractTableModel):
+class JsonTableModel(QAbstractTableModel):
     def __init__(self, json_data=None, parent=None):
-        super(RulesTableModel, self).__init__(parent)
+        super(JsonTableModel, self).__init__(parent)
         self.headers = ["Item / Key", "Value"]
         self._data_list = []
         
